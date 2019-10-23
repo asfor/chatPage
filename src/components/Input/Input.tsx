@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useCallback } from 'react'
 
 import { context, setStore } from '../../Context'
 import { Message, MessageType } from '../../store/struct'
@@ -10,6 +10,16 @@ const Input: React.SFC = () => {
   const [content, setContent] = useState('')
   const { messages = [] } = useContext(context)
 
+  const onKeyPress = useCallback(e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      const newMsg: Message = { id: Date.now(), type: MessageType.Normal, mine: true, content }
+
+      // TODO: 提交数据
+      setStore({ messages: [...messages, newMsg] })
+      setTimeout(() => setContent(''), 0)
+    }
+  }, [content, messages])
+
   return (
     <div id="input">
       <Tools />
@@ -19,15 +29,7 @@ const Input: React.SFC = () => {
         rows={7}
         value={content}
         onChange={e => setContent(e.target.value)}
-        onKeyPress={e => {
-          if (e.key === 'Enter' && !e.shiftKey) {
-            const newMsg: Message = { id: Date.now(), type: MessageType.Normal, mine: true, content }
-            
-            // TODO: 提交数据
-            setStore({ messages: [...messages, newMsg] })
-            setTimeout(() => setContent(''), 0)
-          }
-        }}
+        onKeyPress={onKeyPress}
       />
     </div>
   )
