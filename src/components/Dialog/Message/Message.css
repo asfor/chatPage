@@ -1,0 +1,34 @@
+.dialog-message {
+  display: flex;
+  padding: 8px;
+}
+
+.dialog-avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.dialog-message-content {
+  font-size: .85rem;
+  max-width: 19rem;
+  box-sizing: border-box;
+  padding: .6rem .55rem;
+  border-radius: 0.28rem;
+}
+
+.dialog-message-system {
+  color: #aaa;
+  text-align: center;
+  font-size: .75rem;
+}
+
+.dialog-message-content img {max-width: 12rem;}
+
+.dialog-message.me {flex-direction: row-reverse;}
+.dialog-message.you {flex-direction: row;}
+
+.dialog-message.me .dialog-avatar {margin-left: .625rem;}
+.dialog-message.you .dialog-avatar {margin-right: .625rem;}
+
+.dialog-message.me .dialog-message-content {background: #a1e75a;}
+.dialog-message.you .dialog-message-content {background: #fff;}

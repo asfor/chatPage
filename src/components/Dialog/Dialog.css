@@ -1,0 +1,6 @@
+#dialog {
+  flex: 1;
+  padding: 1.25rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
